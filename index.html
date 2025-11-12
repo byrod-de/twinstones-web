@@ -9,42 +9,7 @@
     <link id="theme-link" rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/pulse/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <style>
-        .dark-mode {
-            --bs-body-bg: #291033;
-            --bs-body-color: #e0e0e0;
-            --bs-card-bg: #1e1e1e;
-            --bs-card-color: #e0e0e0;
-            --bs-primary: #66bfff;
-            --bs-secondary: #999999;
-            --bs-light: #1e1e1e;
-            /* bg-light im Dark Mode */
-            --bs-dark: #e0e0e0;
-            /* text-dark im Dark Mode */
-        }
-
-        body {
-            background-color: var(--bs-body-bg);
-            color: var(--bs-body-color);
-        }
-
-        .card {
-            background-color: var(--bs-card-bg);
-            color: var(--bs-card-color);
-        }
-
-        /* bg-light / text-dark Utilities anpassen */
-        .bg-light {
-            background-color: var(--bs-light) !important;
-        }
-
-        .text-dark {
-            color: var(--bs-dark) !important;
-        }
-    </style>
-
+    <link rel="stylesheet" href="css/darkmode.css">
 </head>
 
 <body>
@@ -56,7 +21,9 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
                     <li class="nav-item"><a class="nav-link" href="#install">Add to Server</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Screenshots</a></li>
                     <li class="nav-item"><a class="nav-link" href="#changelog">Changelog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#disclaimer">Disclaimer</a></li>
                 </ul>
             </div>
         </div>
@@ -71,7 +38,7 @@
 
     <header class="bg-light text-dark py-5 text-center">
         <div class="container">
-            <h1 class="display-4">Twinstones – Daggerheart Dice Roll Discord Bot</h1>
+            <h1 class="display-4">Twinstones – A fan-made Discord bot.</h1>
             <p class="lead">Rolls two d12 (Hope + Fear) the Daggerheart™ way</p>
             <div>
                 <img src="images/hope.png" alt="Hope" width="40" height="40" class="me-3">
@@ -195,6 +162,24 @@
         </div>
     </section>
 
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Screenshots</h2>
+            <div id="carouselScreenshots" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" id="carousel-inner"></div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselScreenshots"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselScreenshots"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
 
     <section id="changelog" class="py-5 bg-light">
         <div class="container">
@@ -205,71 +190,29 @@
         </div>
     </section>
 
+    <section id="disclaimer" class="py-5 bg-secondary text-light">
+        <div class="container">
+            <h2 class="mb-4">Disclaimer</h2>
+            This bot is an unofficial fan creation inspired by Daggerheart™ and other Darrington Press™ content. It is
+            not affiliated with, endorsed by, or sponsored by Darrington Press LLC or Critical Role. All Daggerheart™
+            trademarks and content are the property of Darrington Press LLC.
+        </div>
+    </section>
+
     <footer class="py-3 text-center bg-primary text-light">
+        <div class="container">
+            Creator: <strong>@byrod</strong> on <img src="images/discord.svg" alt="Discord" width="20" height="20">.
+        </div>
         <div class="container">
             &copy; 2025 Twinstones. All rights reserved.
         </div>
+        <p class="mt-1">
+            <small>
+            </small>
+        </p>
     </footer>
 
-    <script>
-        fetch('status.json')
-            .then(async res => {
-                if (!res.ok) {
-                    // HTTP-Fehler abfangen
-                    throw new Error(`HTTP error! status: ${res.status} ${res.statusText}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                document.getElementById('bot-status').textContent = data.online ? 'Online ✅' : 'Offline ❌';
-                document.getElementById('server-count').textContent = `Servers: ${data.servers}`;
-                if (!data.online) {
-                    document.getElementById('bot-status').className = 'badge bg-danger';
-                }
-            })
-            .catch(err => {
-                console.error('Failed to fetch status.json:', err);
-                document.getElementById('bot-status').textContent = 'Offline ❌';
-                document.getElementById('server-count').textContent = 'Servers: ?';
-                document.getElementById('bot-status').className = 'badge bg-danger';
-            });
-
-        fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
-            .then(res => res.json())
-            .then(data => {
-                const list = document.getElementById('changelog-list');
-                list.innerHTML = '';
-                data.slice(0, 10).forEach(c => { // letzte 10 commits
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item bg-light text-dark';
-                    //format date as inline code
-                    li.innerHTML = `<code>${c.commit.author.date}</code>: ${c.commit.message}`;
-                    list.appendChild(li);
-                });
-            })
-            .catch(() => {
-                document.getElementById('changelog-list').innerHTML = '<li class="list-group-item">Failed to load commits.</li>';
-            });
-
-        const installLink = "https://discord.com/oauth2/authorize?client_id=1375907403173986485";
-
-        // Navbar link
-        document.querySelectorAll('a.nav-link.install').forEach(a => a.href = installLink);
-
-        // Button link
-        const btn = document.getElementById('install-btn');
-        if (btn) btn.href = installLink;
-
-        const toggle = document.getElementById('darkModeToggle');
-        toggle.addEventListener('change', () => {
-            document.body.classList.toggle('dark-mode', toggle.checked);
-        });
-
-        // Optional: auto toggle based on system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-mode');
-        }
-    </script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>
