@@ -1,3 +1,11 @@
+//Status.json has the structure:
+//{
+//  "online": true,
+//  "timestamp": "2023-07-20T15:30:40.000Z",
+//  "servers": 123
+//}
+// Fetch the status.json file and update the bot status and server count. If the timestamp is older than 10 minutes, consider the bot offline.
+
 fetch('status.json')
     .then(async res => {
         if (!res.ok) {
@@ -7,15 +15,21 @@ fetch('status.json')
         return res.json();
     })
     .then(data => {
-        document.getElementById('bot-status').textContent = data.online ? 'Online ✅' : 'Offline ❌';
+        const timestamp = new Date(data.timestamp);
+        const now = new Date();
+        const diffMinutes = (now - timestamp) / 1000 / 60;
+
+        const isOnline = data.online && diffMinutes <= 10;
+
+        document.getElementById('bot-status').textContent = isOnline ? 'Online' : 'Offline';
         document.getElementById('server-count').textContent = `Servers: ${data.servers}`;
-        if (!data.online) {
+        if (!isOnline) {
             document.getElementById('bot-status').className = 'badge bg-danger';
         }
     })
     .catch(err => {
         console.error('Failed to fetch status.json:', err);
-        document.getElementById('bot-status').textContent = 'Offline ❌';
+        document.getElementById('bot-status').textContent = 'Offline';
         document.getElementById('server-count').textContent = 'Servers: ?';
         document.getElementById('bot-status').className = 'badge bg-danger';
     });
