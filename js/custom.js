@@ -77,14 +77,17 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
         document.getElementById('changelog-list').innerHTML = '<li class="list-group-item">Failed to load commits.</li>';
     });
 
-// this does not work when hosted, but locallsy it does. Why? CORS?
-  fetch('/TERMS.md')
-    .then(r => { console.log(r); return r.text(); })
-    .then(t => {
-    //remove all links from the markdown text
+fetch("TERMS.md")
+  .then(r => {
+    if (!r.ok) throw new Error(`HTTP error! ${r.status}`);
+    return r.text();
+  })
+  .then(t => {
     t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
-      document.getElementById('terms-content').innerHTML = marked.parse(t);
-    });
+    document.getElementById('terms-content').innerHTML = marked.parse(t);
+  })
+  .catch(err => console.error(err));
+
 
   fetch('/PRIVACY.md')
   .then(r => { console.log(r); return r.text(); })
