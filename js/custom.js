@@ -79,20 +79,20 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
 
 
   fetch('/TERMS.md')
-  .then(r => { console.log(r); return r.text(); })
+  .then(r => { return r.text(); })
     .then(t => {
       document.getElementById('terms-content').innerHTML = marked.parse(t);
     });
 
 
   fetch('/PRIVACY.md')
-  .then(r => { console.log(r); return r.text(); })
+  .then(r => { return r.text(); })
     .then(t => {
       document.getElementById('privacy-content').innerHTML = marked.parse(t);
     });
 
 fetch('/DISCLAIMER.md')
-    .then(r => { console.log(r); return r.text(); })
+    .then(r => { return r.text(); })
     .then(t => {
       document.getElementById('disclaimer-content').innerHTML = marked.parse(t);
     });
