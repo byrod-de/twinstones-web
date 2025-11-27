@@ -34,6 +34,32 @@ fetch('status.json')
         document.getElementById('bot-status').className = 'badge bg-danger';
     });
 
+/* To be activated when rollStats.json is available and has more data!
+fetch('rollStats.json')
+    .then(async res => {
+        if (!res.ok) {
+            // HTTP-Fehler abfangen
+            throw new Error(`HTTP error! status: ${res.status} ${res.statusText}`);
+        }
+        return res.json();
+    })
+    .then(data => {
+        document.getElementById('total-rolls').textContent = data.totalRolls;
+        document.getElementById('critical-rolls').textContent = data.totalCrits;
+        document.getElementById('hope-gained').textContent = data.totalHope;
+        document.getElementById('fear-gained').textContent = data.totalFear;
+        document.getElementById('stress-cleared').textContent = data.totalStress;
+    })
+    .catch(err => {
+        console.error('Failed to fetch rollStats.json:', err);
+        document.getElementById('total-rolls').textContent = '?';
+        document.getElementById('critical-rolls').textContent = '?';
+        document.getElementById('hope-gained').textContent = '?';
+        document.getElementById('fear-gained').textContent = '?';
+        document.getElementById('stress-cleared').textContent = '?';
+    });
+*/
+
 fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
     .then(res => res.json())
     .then(data => {
@@ -49,6 +75,28 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
     })
     .catch(() => {
         document.getElementById('changelog-list').innerHTML = '<li class="list-group-item">Failed to load commits.</li>';
+    });
+
+
+  fetch("https://raw.githubusercontent.com/byrod-de/twinstones/main/TERMS.md")
+    .then(r => r.text())
+    .then(t => {
+      document.getElementById('terms-content').innerHTML = marked.parse(t);
+    });
+
+
+  fetch("https://raw.githubusercontent.com/byrod-de/twinstones/main/TERMS.md")
+    .then(r => r.text())
+    .then(t => {
+    //remove all links from the markdown text
+    t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
+      document.getElementById('terms-content').innerHTML = marked.parse(t);
+    });
+
+  fetch("https://raw.githubusercontent.com/byrod-de/twinstones/main/PRIVACY.md")
+    .then(r => r.text())
+    .then(t => {
+      document.getElementById('privacy-content').innerHTML = marked.parse(t);
     });
 
 const installLink = "https://discord.com/oauth2/authorize?client_id=1375907403173986485";

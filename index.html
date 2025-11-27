@@ -18,9 +18,10 @@
 
     <title>Twinstones – Discord Bot</title>
 
-    <link id="theme-link" rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/pulse/bootstrap.min.css">
+    <link id="theme-link" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/pulse/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <link rel="stylesheet" href="css/darkmode.css">
 </head>
 
@@ -41,6 +42,7 @@
                     <li class="nav-item"><a class="nav-link" href="#gallery">Screenshots</a></li>
                     <li class="nav-item"><a class="nav-link" href="#changelog">Changelog</a></li>
                     <li class="nav-item"><a class="nav-link" href="#disclaimer">Disclaimer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#terms-privacy">Terms & Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -154,15 +156,28 @@
                 </div>
 
                 <!-- Status & Stats -->
-                <div class="col-md-2    ">
+                <div class="col-md-2">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Status & Stats</h5>
+                            <h5 class="card-title">Status</h5>
                             <p class="card-text">See online status and server count live.</p>
                             <span class="badge bg-success" id="bot-status">Loading...</span>
                             <span class="badge bg-info" id="server-count">...</span>
                         </div>
                     </div>
+                    <!-- To be activated when rollStats.json is available and has more data!
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Statistics</h5>
+                            <p class="card-text">Total rolls since launch:</p>
+                            <label for="total-rolls">Total Rolls:</label> <span class="badge bg-info" id="total-rolls">...</span>
+                            <label for="critical-rolls">Crits Rolled:</label> <span class="badge bg-success" id="critical-rolls">...</span>
+                            <label for="hope-gained">Hope Gained:</label> <span class="badge bg-warning" id="hope-gained">...</span>
+                            <label for="fear-gained">Fear Gained:</label> <span class="badge bg-primary" id="fear-gained">...</span>
+                            <label for="stress-cleared">Stress Cleared:</label> <span class="badge bg-info" id="stress-cleared">...</span>
+                        </div>
+                    </div>
+                    -->
                 </div>
             </div>
         </div>
@@ -213,6 +228,21 @@
             This bot is an unofficial fan creation inspired by Daggerheart™ and other Darrington Press™ content. It is
             not affiliated with, endorsed by, or sponsored by Darrington Press LLC or Critical Role. All Daggerheart™
             trademarks and content are the property of Darrington Press LLC.
+        </div>
+    </section>
+
+    <section id="terms-privacy" class="py-5 bg-light">
+        <div class="container">
+            <!-- Terms of service and privacy policy content goes here, next to each other, fetched via JS -->
+            <h2 class="mb-4">Terms of Service & Privacy Policy</h2>
+            <div class="row">
+                <div class="col-md-6" id="terms">
+                    <div id="terms-content" class="bg-primary text-light p-3 rounded">Loading terms of service from GitHub...</div>
+                </div>
+                <div class="col-md-6" id="privacy">
+                    <div id="privacy-content" class="bg-primary text-light p-3 rounded">Loading privacy policy from GitHub...</div>
+                </div>
+            </div>
         </div>
     </section>
 
