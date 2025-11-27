@@ -6,7 +6,6 @@
 //}
 // Fetch the status.json file and update the bot status and server count. If the timestamp is older than 10 minutes, consider the bot offline.
 
-console.log('Fetching bot status...');
 fetch('status.json')
     .then(async res => {
         if (!res.ok) {
@@ -61,7 +60,6 @@ fetch('rollStats.json')
     });
 */
 
-console.log('Fetching changelog from GitHub...');
 fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
     .then(res => res.json())
     .then(data => {
@@ -80,22 +78,20 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
     });
 
 
-
-console.log('Fetching terms, privacy, and disclaimer documents...');
-  fetch('/TERMS.txt')
+  fetch('/TERMS.md')
   .then(r => { console.log(r); return r.text(); })
     .then(t => {
       document.getElementById('terms-content').innerHTML = marked.parse(t);
     });
 
 
-  fetch('/PRIVACY.txt')
+  fetch('/PRIVACY.md')
   .then(r => { console.log(r); return r.text(); })
     .then(t => {
       document.getElementById('privacy-content').innerHTML = marked.parse(t);
     });
 
-fetch('/DISCLAIMER.txt')
+fetch('/DISCLAIMER.md')
     .then(r => { console.log(r); return r.text(); })
     .then(t => {
       document.getElementById('disclaimer-content').innerHTML = marked.parse(t);
