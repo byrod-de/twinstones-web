@@ -77,6 +77,9 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
         document.getElementById('changelog-list').innerHTML = '<li class="list-group-item">Failed to load commits.</li>';
     });
 
+console.log('marked:', typeof marked);
+
+
   fetch('/TERMS.txt')
   .then(r => { console.log(r); return r.text(); })
     .then(t => {
