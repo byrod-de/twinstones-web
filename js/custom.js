@@ -77,25 +77,20 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
         document.getElementById('changelog-list').innerHTML = '<li class="list-group-item">Failed to load commits.</li>';
     });
 
-    fetch('/TERMS.md')
-    .then(r => {
-        if (!r.ok) throw new Error(`HTTP error! ${r.status}`);
-        return r.text();
-    })
+  fetch('/TERMS.txt')
+  .then(r => { console.log(r); return r.text(); })
     .then(t => {
-        t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
-        document.getElementById('terms-content').innerHTML = marked.parse(t);
-    })
-    .catch(err => console.error(err));
+      document.getElementById('terms-content').innerHTML = marked.parse(t);
+    });
 
 
-  fetch('/PRIVACY.md')
+  fetch('/PRIVACY.txt')
   .then(r => { console.log(r); return r.text(); })
     .then(t => {
       document.getElementById('privacy-content').innerHTML = marked.parse(t);
     });
 
-fetch('/DISCLAIMER.md')
+fetch('/DISCLAIMER.txt')
     .then(r => { console.log(r); return r.text(); })
     .then(t => {
       document.getElementById('disclaimer-content').innerHTML = marked.parse(t);
