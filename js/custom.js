@@ -78,14 +78,7 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
     });
 
 
-  fetch("https://raw.githubusercontent.com/byrod-de/twinstones/main/TERMS.md")
-    .then(r => r.text())
-    .then(t => {
-      document.getElementById('terms-content').innerHTML = marked.parse(t);
-    });
-
-
-  fetch("https://raw.githubusercontent.com/byrod-de/twinstones/main/TERMS.md")
+  fetch("TERMS.md")
     .then(r => r.text())
     .then(t => {
     //remove all links from the markdown text
@@ -93,10 +86,16 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
       document.getElementById('terms-content').innerHTML = marked.parse(t);
     });
 
-  fetch("https://raw.githubusercontent.com/byrod-de/twinstones/main/PRIVACY.md")
+  fetch("PRIVACY.md")
     .then(r => r.text())
     .then(t => {
       document.getElementById('privacy-content').innerHTML = marked.parse(t);
+    });
+
+fetch("DISCLAIMER.md")
+    .then(r => r.text())
+    .then(t => {
+      document.getElementById('disclaimer-content').innerHTML = marked.parse(t);
     });
 
 const installLink = "https://discord.com/oauth2/authorize?client_id=1375907403173986485";
