@@ -78,23 +78,27 @@ fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
     });
 
 
-  fetch('/TERMS.md')
-  .then(r => { return r.text(); })
+fetch('/TERMS.md')
+    .then(r => { return r.text(); })
     .then(t => {
-      document.getElementById('terms-content').innerHTML = marked.parse(t);
+        //remove links from the markdown
+        t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
+        document.getElementById('terms-content').innerHTML = marked.parse(t);
     });
 
 
-  fetch('/PRIVACY.md')
-  .then(r => { return r.text(); })
+fetch('/PRIVACY.md')
+    .then(r => { return r.text(); })
     .then(t => {
-      document.getElementById('privacy-content').innerHTML = marked.parse(t);
+        t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
+        document.getElementById('privacy-content').innerHTML = marked.parse(t);
     });
 
 fetch('/DISCLAIMER.md')
     .then(r => { return r.text(); })
     .then(t => {
-      document.getElementById('disclaimer-content').innerHTML = marked.parse(t);
+        t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
+        document.getElementById('disclaimer-content').innerHTML = marked.parse(t);
     });
 
 const installLink = "https://discord.com/oauth2/authorize?client_id=1375907403173986485";
