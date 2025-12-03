@@ -1,0 +1,87 @@
+[
+    {
+        "command": "dh-roll",
+        "description": "Rolls two d12 (Hope + Fear). Options: modifier, bonus, ally_dice, type, d20_bonus, show.",
+
+        "options": [
+            {
+                "name": "modifier",
+                "description": "Adds/subtracts a number to the roll (default 0).",
+                "required": false
+            },
+            {
+                "name": "bonus",
+                "description": "advantage, disadvantage, ally (adds extra d6)",
+                "required": false,
+                "values": ["advantage", "disadvantage"]
+            },
+            {
+                "name": "ally_dice",
+                "description": "number of d6 for ally help (only with bonus=ally)",
+                "required": false
+            },
+            {
+                "name": "type",
+                "description": "Action (default) or Reaction.",
+                "required": false,
+                "values": ["Action", "Reaction"]
+            },
+            {
+                "name": "d20_bonus",
+                "description": "hope, fear, or none.",
+                "required": false,
+                "values": ["hope", "fear", "none"]
+            },
+            {
+                "name": "show",
+                "description": "set false to hide",
+                "required": false
+            }
+        ],
+        "examples": ["/dh-roll modifier:2 bonus:advantage type:Action"]
+    },
+    {
+        "command": "dice-roll",
+        "description": "Rolls standard dice or coin. Options: dice, bonus, modifier, show.",
+        "options": [
+            {
+                "name": "dice",
+                "description": "XdY (e.g., 3d6) or coin (default 1d20).",
+                "required": true            },
+            {
+                "name": "bonus",
+                "description": "only for single d20: advantage/disadvantage.",
+                "required": false,
+                "values": ["advantage", "disadvantage"]
+            },
+            {
+                "name": "modifier",
+                "description": "adds/subtracts number to the roll.",
+                "required": false            
+            },
+            {
+                "name": "show",
+                "description": "set false to hide.",
+                "required": false            
+            }
+        ],
+        "examples": ["/dice-roll dice:coin", "/dice-roll dice:3d6", "/dice-roll dice:d20 bonus:advantage"]
+    },
+    {
+        "command": "roll-any",
+        "description": "Rolls any mix of dice and numbers. Input: rollinput. Options: show. Allowed dice: d2, d4, d6, d8, d10, d12, d20, d100.",
+        "options": [
+            {
+                "name": "rollinput",
+                "description": "The dice and numbers to roll (e.g., 2d6 + d8 - 2).",
+                "required": true
+            },
+            {
+                "name": "show",
+                "description": "Show detailed roll results.",
+                "required": false
+            }
+        ],
+        "examples": ["/roll-any rollinput:2d6 + d8 - 2"]
+    }
+]

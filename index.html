@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Twinstones – A fan-made Discord bot that rolls two d12 (Hope + Fear) the Daggerheart™ way.">
+    <meta name="description"
+        content="Twinstones – A fan-made Discord bot that rolls two d12 (Hope + Fear) the Daggerheart™ way.">
     <meta name="keywords" content="Twinstones, Discord Bot, Daggerheart, Dice Roller, RPG, Hope and Fear, TTRPS">
     <meta name="url" content="https://twinstones.link/">
 
     <meta property="og:title" content="Twinstones – Discord Bot">
-    <meta property="og:description" content="A fan-made Discord bot that rolls two d12 (Hope + Fear) the Daggerheart™ way.">
+    <meta property="og:description"
+        content="A fan-made Discord bot that rolls two d12 (Hope + Fear) the Daggerheart™ way.">
     <meta property="og:image" content="https://twinstones.link/images/twinstones-logo.png">
     <meta property="og:url" content="https://twinstones.link/">
 
@@ -18,9 +20,11 @@
 
     <title>Twinstones – Discord Bot</title>
 
-    <link id="theme-link" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/pulse/bootstrap.min.css">
+    <link id="theme-link" rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/pulse/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 
     <link rel="stylesheet" href="css/darkmode.css">
 </head>
@@ -39,6 +43,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
                     <li class="nav-item"><a class="nav-link" href="#install">Add to Server</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stats_status">Stats & Status</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Screenshots</a></li>
                     <li class="nav-item"><a class="nav-link" href="#changelog">Changelog</a></li>
                     <li class="nav-item"><a class="nav-link" href="#disclaimer">Disclaimer</a></li>
@@ -74,111 +79,13 @@
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Commands & Features</h5>
+                            <h5 class="card-title">Commands & Features</h5>                            
                             <div class="accordion" id="commandsAccordion">
-                                <!-- dh-roll -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-dhroll">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse-dhroll"
-                                            aria-expanded="false" aria-controls="collapse-dhroll">
-                                            /dh-roll
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-dhroll" class="accordion-collapse collapse"
-                                        aria-labelledby="heading-dhroll" data-bs-parent="#commandsAccordion">
-                                        <div class="accordion-body">
-                                            <strong>What it does:</strong> Rolls two d12 (Hope + Fear).<br>
-                                            <strong>Options:</strong><br>
-                                            - <code>modifier</code> – adds/subtracts a number (default 0)<br>
-                                            - <code>bonus</code> – advantage, disadvantage, ally (adds extra d6)<br>
-                                            - <code>ally_dice</code> – number of d6 for ally help (only with
-                                            bonus=ally)<br>
-                                            - <code>type</code> – Action (default) or Reaction<br>
-                                            - <code>d20_bonus</code> – hope, fear, or none<br>
-                                            - <code>show</code> – set false to hide<br>
-                                            <strong>Example:</strong>
-                                            <code>/dh-roll modifier:2 bonus:advantage type:Reaction</code>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- dice-roll -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-diceroll">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse-diceroll"
-                                            aria-expanded="false" aria-controls="collapse-diceroll">
-                                            /dice-roll
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-diceroll" class="accordion-collapse collapse"
-                                        aria-labelledby="heading-diceroll" data-bs-parent="#commandsAccordion">
-                                        <div class="accordion-body">
-                                            <strong>What it does:</strong> Rolls standard dice or coin.<br>
-                                            <strong>Options:</strong><br>
-                                            - <code>dice</code> – XdY (e.g., 3d6) or coin (default 1d20)<br>
-                                            - <code>bonus</code> – only for single d20: advantage/disadvantage<br>
-                                            - <code>modifier</code> – adds/subtracts number<br>
-                                            - <code>show</code> – set false to hide<br>
-                                            <strong>Examples:</strong><br>
-                                            <code>/dice-roll dice:coin</code><br>
-                                            <code>/dice-roll dice:3d6</code><br>
-                                            <code>/dice-roll dice:d20 bonus:advantage</code>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- roll-any -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-rollany">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse-rollany"
-                                            aria-expanded="false" aria-controls="collapse-rollany">
-                                            /roll-any
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-rollany" class="accordion-collapse collapse"
-                                        aria-labelledby="heading-rollany" data-bs-parent="#commandsAccordion">
-                                        <div class="accordion-body">
-                                            <strong>What it does:</strong> Rolls any mix of dice and numbers.<br>
-                                            <strong>Input:</strong> put everything in <code>rollinput</code>, e.g., 2d6
-                                            + d8 - 2<br>
-                                            Allowed dice: d2, d4, d6, d8, d10, d12, d20, d100<br>
-                                            <code>show</code> – set false to hide<br>
-                                            <strong>Example:</strong> <code>/roll-any rollinput:2d6 + d8 - 2</code>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Status & Stats -->
-                <div class="col-md-2">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Status</h5>
-                            <p class="card-text">See online status and server count live.</p>
-                            <span class="badge bg-success" id="bot-status">Loading...</span>
-                            <span class="badge bg-info" id="server-count">...</span>
-                        </div>
-                    </div>
-                    <!-- To be activated when rollStats.json is available and has more data!
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Statistics</h5>
-                            <p class="card-text">Total rolls since launch:</p>
-                            <label for="total-rolls">Total Rolls:</label> <span class="badge bg-info" id="total-rolls">...</span>
-                            <label for="critical-rolls">Crits Rolled:</label> <span class="badge bg-success" id="critical-rolls">...</span>
-                            <label for="hope-gained">Hope Gained:</label> <span class="badge bg-warning" id="hope-gained">...</span>
-                            <label for="fear-gained">Fear Gained:</label> <span class="badge bg-primary" id="fear-gained">...</span>
-                            <label for="stress-cleared">Stress Cleared:</label> <span class="badge bg-info" id="stress-cleared">...</span>
-                        </div>
-                    </div>
-                    -->
-                </div>
             </div>
         </div>
     </section>
@@ -186,11 +93,29 @@
     <section id="install" class="py-5 bg-secondary text-light">
         <div class="container">
             <h2 class="mb-4">Installation</h2>
-            <p class="lead text-center">Installation: Choose "Add to Server" below to be forwarded to the Discord bot
-                invite link.
-                <br />
-                <a href="#" class="btn btn-primary btn-lg" id="install-btn" target="_blank">Add to Server</a>
+            <p class="lead text-center">
+                Installation: Choose "Add to Server" below to be forwarded to the Discord bot invite link.<br />
+                <a href="#" class="btn btn-primary btn-lg" id="install-btn" target="_blank">Add to Server <img
+                        src="images/discord.svg" alt="Discord" width="20" height="20"></a>
             </p>
+        </div>
+    </section>
+
+    <section id="stats_status" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4">Live Bot Status</h2>
+            <div class="row justify-content-center">
+
+                <div class="col-md-6 mb-3">
+                    <span class="lead text-center">Current Bot Status:</span>&nbsp;<span class="lead text-center"
+                        id="bot-status">Loading bot status...</span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <span class="lead text-center">Server Count:</span>&nbsp;<span class="lead text-center"
+                        id="server-count">Loading server count...</span>
+                </div>
+                <div class="col-md-12 mb-3"><canvas id="rollChart"></canvas></div>
+            </div>
         </div>
     </section>
 
@@ -230,7 +155,6 @@
 
     <section id="terms-privacy" class="py-5 bg-light">
         <div class="container">
-            <!-- Terms of service and privacy policy content goes here, next to each other, fetched via JS -->
             <div class="row">
                 <div class="col-md-6" id="terms">
                     <div id="terms-content" class="bg-primary text-light p-3 rounded">Loading terms of service...</div>
@@ -244,22 +168,56 @@
 
     <footer class="py-3 text-center bg-primary text-light">
         <div class="container">
+            <a href="https://top.gg/de/bot/1375907403173986485/vote" target="_blank" class="text-light"
+                style="text-decoration: none">
+                Vote for Twinstones on top.gg <svg viewBox="120 120 580 580" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" class="size-[52px]" width="20" height="20">
+                    <path fill="currentColor"
+                        d="M655.711 247H330.71V572H397.113C422.599 572 447.042 561.876 465.064 543.854C483.086 525.832 493.21 501.389 493.21 475.902V409.5H559.613C585.099 409.5 609.542 399.375 627.564 381.354C645.586 363.332 655.711 338.889 655.711 313.402V247Z">
+                    </path>
+                    <path fill="currentColor"
+                        d="M144 247H306.5V409.5H193.657C180.531 409.5 167.943 404.286 158.661 395.004C149.379 385.722 144.165 373.134 144.165 360.008L144 247Z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+        <div class="container">
             Creator: <strong>@byrod</strong> on <img src="images/discord.svg" alt="Discord" width="20"
                 height="20"><br />
-            If you like the bot, consider supporting its development:
-            <a href="https://ko-fi.com/N4N6L8OBN" target="_blank"><img height="36" style="border:0px;height:36px;"
-                    src="images/kofi.png" alt="Buy Me a Coffee at ko-fi.com" /></a>
+            <a href="https://ko-fi.com/N4N6L8OBN" target="_blank" class="text-light" style="text-decoration: none">If
+                you like the bot, consider supporting its development on Ko-fi!&nbsp;
+                <img height="20" style="border:0px;height:20px;" src="images/kofi.png"
+                    alt="Buy Me a Coffee at ko-fi.com" /></a>
         </div>
         <div class="container">
             &copy; 2025 Twinstones. All rights reserved.
         </div>
-        <p class="mt-1">
-            <small>
-            </small>
-        </p>
+
+        <div class="container">
+            <a href="#top" class="text-light" style="text-decoration: none">Back to top ^</a>
+        </div>
+
     </footer>
 
     <script src="js/custom.js"></script>
+    <script src="js/dh-roll.js"></script>
+
+    <!-- Roll Result Modal -->
+    <div class="modal fade" id="rollResultModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content" id="roll-modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="roll-modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body" id="roll-modal-body"></div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
