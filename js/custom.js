@@ -14,11 +14,8 @@ fetch('status.json')
 
         const isOnline = data.online && diffMinutes <= 10;
 
-        document.getElementById('bot-status').textContent = isOnline ? 'Online' : 'Offline';
-        document.getElementById('server-count').textContent = `${data.servers}`;
-        if (!isOnline) {
-            document.getElementById('bot-status').className = 'badge bg-danger';
-        }
+        document.getElementById('bot-status').innerHTML = isOnline ? '<strong class="text-success">Online</strong>' : '<strong class="text-danger">Offline</strong>';
+        document.getElementById('server-count').innerHTML = `<strong class="text-secondary">${data.servers}</strong>`;
     })
     .catch(err => {
         console.error('Failed to fetch status.json:', err);
