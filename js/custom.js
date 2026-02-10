@@ -26,63 +26,59 @@ fetch('status.json')
 
 
 // Fetch roll statistics and render chart, rollStats.json is written by the bot
-// Do this only if an url parameter "stats" is present
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('stats')) {
-    fetch('rollStats.json')
-        .then(async res => {
-            if (!res.ok) {
-                // HTTP-Fehler abfangen
-                throw new Error(`HTTP error! status: ${res.status} ${res.statusText}`);
-            }
-            return res.json();
-        })
-        .then(data => {
-            const ctx = document.getElementById('rollChart').getContext('2d');
-            //maximum height 300px
-            document.getElementById('rollChart').style.maxHeight = '250px';
-            const chart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Critical Rolls', 'Hope Gained', 'Stress Cleared', 'Fear Gained'],
-                    datasets: [{
-                        label: 'Stats',
-                        data: [data.totalCrits, data.totalHope, data.totalStress, data.totalFear],
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.5)',
-                            'rgba(255, 206, 86, 0.5)',
-                            'rgba(54, 235, 120, 0.5)', //make this greenish
-                            'rgba(153, 102, 255, 0.5)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(54, 235, 120, 1)', //make this greenish
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        }
+fetch('rollStats.json')
+    .then(async res => {
+        if (!res.ok) {
+            // HTTP-Fehler abfangen
+            throw new Error(`HTTP error! status: ${res.status} ${res.statusText}`);
+        }
+        return res.json();
+    })
+    .then(data => {
+        const ctx = document.getElementById('rollChart').getContext('2d');
+        //maximum height 300px
+        document.getElementById('rollChart').style.maxHeight = '250px';
+        const chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Critical Rolls', 'Hope Gained', 'Stress Cleared', 'Fear Gained'],
+                datasets: [{
+                    label: 'Stats',
+                    data: [data.totalCrits, data.totalHope, data.totalStress, data.totalFear],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(54, 235, 120, 0.5)', //make this greenish
+                        'rgba(153, 102, 255, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(54, 235, 120, 1)', //make this greenish
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
                     }
                 }
-            });
-        })
-        .catch(err => {
-            console.error('Failed to fetch rollStats.json:', err);
-            document.getElementById('total-rolls').textContent = '?';
-            document.getElementById('critical-rolls').textContent = '?';
-            document.getElementById('hope-gained').textContent = '?';
-            document.getElementById('fear-gained').textContent = '?';
-            document.getElementById('stress-cleared').textContent = '?';
+            }
         });
-}
+    })
+    .catch(err => {
+        console.error('Failed to fetch rollStats.json:', err);
+        document.getElementById('total-rolls').textContent = '?';
+        document.getElementById('critical-rolls').textContent = '?';
+        document.getElementById('hope-gained').textContent = '?';
+        document.getElementById('fear-gained').textContent = '?';
+        document.getElementById('stress-cleared').textContent = '?';
+    });
 
 // Fetch latest commits from GitHub and display in changelog
 fetch('https://api.github.com/repos/byrod-de/twinstones/commits')
