@@ -136,14 +136,12 @@ const btn = document.getElementById('install-btn');
 if (btn) btn.href = installLink;
 
 const toggle = document.getElementById('darkModeToggle');
+toggle.checked = window.matchMedia('(prefers-color-scheme: dark)').matches;
 toggle.addEventListener('change', () => {
     document.body.classList.toggle('dark-mode', toggle.checked);
 });
 
-// Set initial dark mode based on system preference
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.classList.add('dark-mode');
-}
+document.body.classList.toggle('dark-mode', toggle.checked);
 
 // Populate screenshot carousel, images are stored in /images/screenshots/, the names are provided in screenshots.json
 fetch('images/screenshots.json')
@@ -178,12 +176,13 @@ fetch('js/features.json')
             const item = document.createElement('div');
             item.className = 'accordion-item';
             item.innerHTML = `
-                <h2 class="accordion-header" id="heading-${feature.command}">
-                    <button class="accordion-button collapsed" type="button"
+                <div class="accordion-header d-flex align-items-center" id="heading-${feature.command}">
+                    <button class="accordion-button collapsed flex-grow-1" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapse-${feature.command}"
                         aria-expanded="false" aria-controls="collapse-${feature.command}">
                         /${feature.command}
                     </button>
+                ${feature.tryable ? `<button class="btn btn-primary btn-sm me-2" id="try-${feature.command}-btn">Try&nbsp;here!</button>` : ''}</div>  
                 </h2>
                 <div id="collapse-${feature.command}" class="accordion-collapse collapse"
                     aria-labelledby="heading-${feature.command}" data-bs-parent="#commandsAccordion">
@@ -198,6 +197,13 @@ fetch('js/features.json')
                     </div>
                 </div>
             `;
+            if (feature.tryable) {
+                item.querySelector(`#try-${feature.command}-btn`).addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    console.log(`Trying out command: /${feature.command}`);
+                    window[`${feature.command.replace(/-/g, '_')}_web`].openModal();
+                });
+            }
             accordion.appendChild(item);
         });
     })

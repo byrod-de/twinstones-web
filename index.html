@@ -26,6 +26,11 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
 
+    <script src="js/dh-roll-web.js" defer></script>
+    <script src="js/dice-roll-web.js" defer></script>
+    <script src="js/roll-any-web.js" defer></script>
+    <script src="js/custom.js" defer></script>
+
     <link rel="stylesheet" href="css/darkmode.css">
 </head>
 
@@ -79,7 +84,7 @@
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">Commands & Features</h5>                            
+                            <h5 class="card-title">Commands & Features</h5>
                             <div class="accordion" id="commandsAccordion">
                             </div>
                         </div>
@@ -199,9 +204,6 @@
 
     </footer>
 
-    <script src="js/custom.js"></script>
-    <!-- <script src="js/dh-roll.js"></script> -->
-
     <!-- Roll Result Modal -->
     <div class="modal fade" id="rollResultModal" tabindex="-1">
         <div class="modal-dialog">
@@ -215,6 +217,7 @@
                 <div class="modal-body" id="roll-modal-body"></div>
 
             </div>
+
         </div>
     </div>
 
